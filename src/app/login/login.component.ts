@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
       (this.username == 'test2' && this.password == '123') ||
       (this.username == 'test3' && this.password == '123')
     ) {
-      alert('success');
+      alert('success ');
       this.route.navigate(['/account']);
     } else alert('User name and password do not match');
   }
