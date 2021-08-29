@@ -1,0 +1,27 @@
+<form>
+  <label>Username</label>
+  <input
+    type="text"
+    id="username"
+    name="username"
+    placeholder="{{ username }}"
+    [(ngModel)]="username"
+  />
+  <label>Birthdate</label>
+  <input
+    type="text"
+    id="pwd"
+    name="birthdate"
+    placeholder="{{ birthdate }}"
+    [(ngModel)]="birthdate"
+  />
+  <label>Age</label>
+  <input
+    type="text"
+    id="age"
+    name="age"
+    placeholder="{{ age }}"
+    [(ngModel)]="age"
+  />
+  <input type="submit" value="Save Details" (click)="saveSession()" />
+</form>

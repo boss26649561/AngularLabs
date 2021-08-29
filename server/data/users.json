@@ -1,0 +1,26 @@
+[
+  {
+    "username": "test1",
+    "birthdate": "6th of november",
+    "age": 23,
+    "email": "test1@gmail.com",
+    "password": "123",
+    "valid": true
+  },
+  {
+    "username": "test2",
+    "birthdate": "6th of October",
+    "age": 15,
+    "email": "test2@gmail.com",
+    "password": "123",
+    "valid": true
+  },
+  {
+    "username": "test3",
+    "birthdate": "6th of August",
+    "age": 18,
+    "email": "test3@gmail.com",
+    "password": "123",
+    "valid": true
+  }
+]

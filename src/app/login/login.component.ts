@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+const httpOptions = {
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+};
+const BACKEND_URL = 'http://localhost:3000';
 
 @Component({
   selector: 'app-login',
@@ -7,21 +12,28 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
-  username = '';
-  password = '';
-
-  constructor(private route: Router) {}
+  userpwd = { username: '', pwd: '' };
+  userobj = { user: '', birthdate: null, age: ' ' };
+  constructor(private route: Router, private httpClient: HttpClient) {}
 
   ngOnInit(): void {}
-
-  accountCheck() {
-    if (
-      (this.username == 'test1' && this.password == '123') ||
-      (this.username == 'test2' && this.password == '123') ||
-      (this.username == 'test3' && this.password == '123')
-    ) {
-      alert('success ');
-      this.route.navigate(['/account']);
-    } else alert('User name and password do not match');
+  loginfunc() {
+    this.httpClient
+      .post(BACKEND_URL + '/api/login', this.userpwd, httpOptions)
+      .subscribe((data: any) => {
+        //alert(JSON.stringify(this.userpwd));
+        if (data.ok) {
+          // console.log(data);
+          // console.log(data.user.username);
+          sessionStorage.setItem('user', data.user.username);
+          sessionStorage.setItem('birthdate', data.user.birthdate);
+          sessionStorage.setItem('age', data.user.age);
+          //alert(data);
+          alert('success ');
+          this.route.navigate(['/account']);
+        } else {
+          alert('User and password not found in database');
+        }
+      });
   }
 }
