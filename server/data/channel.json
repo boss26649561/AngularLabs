@@ -1,0 +1,32 @@
+[
+  {
+    "Name": "Sports",
+    "Group": [],
+    "Channel": {
+      "Channel1": {
+        "Chat": []
+      },
+      "Channel2": {
+        "Chat": []
+      },
+      "Channel3": {
+        "Chat": []
+      }
+    }
+  },
+  {
+    "Name": "Gaming",
+    "Assistant": [],
+    "Channel": {
+      "Channel1": {
+        "Chat": []
+      },
+      "Channel2": {
+        "Chat": []
+      },
+      "Channel3": {
+        "Chat": []
+      }
+    }
+  }
+]

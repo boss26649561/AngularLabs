@@ -1,0 +1,42 @@
+<p>Welcome {{ username }}</p>
+<form>
+  <h1>Remove user</h1>
+  <label>Username</label>
+  <input
+    type="text"
+    id="username"
+    name="username"
+    placeholder=""
+    [(ngModel)]="deleteUser.username"
+  />
+  <input type="submit" value="Remove User" (click)="removeUser()" />
+</form>
+
+<form>
+  <h1>Create new user</h1>
+  <label>Username</label>
+  <input
+    type="text"
+    id="username"
+    name="username"
+    placeholder=""
+    [(ngModel)]="newUser.username"
+  />
+  <label>Email</label>
+  <input
+    type="text"
+    id="email"
+    name="email"
+    placeholder=""
+    [(ngModel)]="newUser.email"
+  />
+  <label>Password</label>
+  <input
+    type="text"
+    id="password"
+    name="age"
+    placeholder=""
+    [(ngModel)]="newUser.password"
+  />
+  <input type="submit" value="Create User" (click)="createUser()" />
+</form>
