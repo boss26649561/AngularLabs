@@ -16,7 +16,10 @@ export class GroupAdminPageComponent implements OnInit {
   currentUsers = null;
   groups = null;
   addgroup = { group: '', user: '' };
+  newGroup = { name: '' };
   deleteUser = { group: '', user: '' };
+  delGroup = { name: '' };
+  currentid: number = 0;
   constructor(private route: Router, private httpClient: HttpClient) {}
 
   ngOnInit(): void {
@@ -44,13 +47,27 @@ export class GroupAdminPageComponent implements OnInit {
       this.route.navigate(['/']);
     }
   }
+
+  createGroup() {
+    this.httpClient
+      .post(BACKEND_URL + '/api/createGroup', this.newGroup, httpOptions)
+      .subscribe((data: any) => {
+        if (data.ok) {
+          alert('new group ' + this.newGroup.name + ' has been added');
+        }
+        if (!data.ok) {
+          alert('Error retrieving Groups');
+        }
+      });
+  }
   getGroup() {
     this.httpClient
       .get(BACKEND_URL + '/api/getAllGroups', httpOptions)
       .subscribe((data: any) => {
         if (data.ok) {
           this.groups = data.Groups;
-          console.log(this.groups);
+          this.currentid = data.id;
+          //console.log(this.groups);
         }
         if (!data.ok) {
           alert('Error retrieving Groups');
@@ -91,17 +108,44 @@ export class GroupAdminPageComponent implements OnInit {
         }
       });
   }
-  DeleteUserGroup() {
-    //   console.log(this.deleteUser);
-    //   this.httpClient
-    //     .put(BACKEND_URL + '/api/addToGroup', this.addgroup, httpOptions)
-    //     .subscribe((data: any) => {
-    //       //alert(JSON.stringify(this.userpwd));
-    //       if (data.ok) {
-    //         alert(user + 'added to' + group);
-    //       } else {
-    //         alert('Error occured');
-    //       }
-    //     });
+  addChannel(name: string) {
+    this.currentid += 1;
+    let gname = { name: name, id: this.currentid };
+    this.httpClient
+      .put(BACKEND_URL + '/api/addChannel', gname, httpOptions)
+      .subscribe((data: any) => {
+        if (data.ok) {
+          alert('Channel has been added');
+          this.currentid += 1;
+        } else {
+          alert('Error adding channel');
+        }
+      });
+  }
+  deleteGroup(name: string) {
+    this.delGroup.name=name
+    this.httpClient
+      .put(BACKEND_URL + '/api/deleteGroup', this.delGroup, httpOptions)
+      .subscribe((data: any) => {
+        if (data.ok) {
+          alert('Group has been deleted');
+          this.currentid += 1;
+        } else {
+          alert('Error removing group');
+        }
+      });
+  }
+  deleteUserGroup() {
+    //console.log(this.deleteUser);
+    this.httpClient
+      .put(BACKEND_URL + '/api/deleteUserGroup', this.deleteUser, httpOptions)
+      .subscribe((data: any) => {
+        //alert(JSON.stringify(this.userpwd));
+        if (data.ok) {
+          alert(this.deleteUser.user + 'deleted from' + this.deleteUser.group);
+        } else {
+          alert('Error occured');
+        }
+      });
   }
 }

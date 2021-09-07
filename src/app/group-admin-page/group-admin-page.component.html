@@ -30,8 +30,16 @@
 </form>
 
 <h1>Groups and channels</h1>
+<p>Add a group</p>
+<input
+  type="text"
+  id="newgroup"
+  name="newgroup"
+  placeholder=""
+  [(ngModel)]="newGroup.name"
+/>
+<input type="submit" value="Create new group" (click)="createGroup()" />
 <p>Add user to a group</p>
-
 <select [(ngModel)]="addgroup.user">
   <option *ngFor="let user of currentUsers" [value]="user">
     {{ user }}
@@ -59,12 +67,16 @@
     {{ group.name }}
   </option>
 </select>
-<input type="submit" value="Add User" (click)="DeleteUserGroup()" />
+<input type="submit" value="Remove User" (click)="deleteUserGroup()" />
 
 <h2 *ngFor="let group of groups">
-  {{ group.name }} <br />
-  <br />
-  <Label>Add a Channel to {{ group.name }}</Label>
+  {{ group.name }}
+  <input type="submit" value="Add Channel" (click)="addChannel(group.name)" />
+  <input
+    type="submit"
+    value="Remove this Group"
+    (click)="deleteGroup(group.name)"
+  /><br />
   <a
     *ngFor="let id of group.channels"
     class="nav-link"

@@ -1,4 +1,1 @@
-[
-  { "name": "Sports", "users": ["test4", "test5"], "channels": [1, 2, 4] },
-  { "name": "Gaming", "users": ["test5"], "channels": [3] }
-]
+[{"name":"Sports","users":["test4","test5"],"channels":[1,2,4]},{"name":"Gaming","users":["test5"],"channels":[3,5]}]
