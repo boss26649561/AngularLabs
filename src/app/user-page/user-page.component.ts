@@ -14,7 +14,10 @@ export class UserPageComponent implements OnInit {
   username = { username: localStorage.getItem('user') };
   groups = null;
 
-  constructor(private route: Router, private httpClient: HttpClient) {}
+  constructor(
+    private route: Router,
+    private httpClient: HttpClient,
+  ) {}
 
   ngOnInit(): void {
     this.checkSession();
@@ -35,7 +38,7 @@ export class UserPageComponent implements OnInit {
       .subscribe((data: any) => {
         if (data.ok) {
           this.groups = data.Groups;
-          console.log(this.groups);
+          
         }
         if (!data.ok) {
           alert('Error retrieving Groups');

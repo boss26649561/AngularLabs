@@ -13,7 +13,7 @@ const routes: Routes = [
   { path: 'account2', component: AdminPageComponent },
   { path: 'account3', component: GroupAdminPageComponent },
   { path: 'account4', component: GroupAssistantPageComponent },
-  { path: 'chat', component: ChatPageComponent },
+  { path: 'chat/:id', component: ChatPageComponent },
 ];
 
 @NgModule({

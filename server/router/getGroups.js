@@ -18,7 +18,7 @@ module.exports = function (req, res) {
         Groupnames.push(group);
       }
     }
-    console.log(Groupnames);
+    //console.log(Groupnames);
     if (Groupnames.length > 0) {
       res.send({ ok: true, Groups: Groupnames });
     } else res.send({ ok: false });

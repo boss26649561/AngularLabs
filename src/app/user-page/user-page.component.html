@@ -6,7 +6,7 @@
   <a
     *ngFor="let id of group.channels"
     class="nav-link"
-    routerLink="/chat/+id"
+    [routerLink]="['/chat',id]"
     >{{ id }}</a
   >
 </h2>
