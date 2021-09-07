@@ -10,7 +10,7 @@ export class AppComponent {
 
   title = 'Assignment1';
   deleteSession() {
-    sessionStorage.clear();
+    localStorage.clear();
     alert('Logged out');
   }
 }

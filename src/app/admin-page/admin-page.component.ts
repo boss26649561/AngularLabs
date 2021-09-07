@@ -12,22 +12,37 @@ const BACKEND_URL = 'http://localhost:3000';
   styleUrls: ['./admin-page.component.css'],
 })
 export class AdminPageComponent implements OnInit {
-  username = sessionStorage.getItem('user');
+  username = localStorage.getItem('user');
   newUser = { username: '', email: '', password: '' };
   deleteUser = { username: '' };
+  currentUsers = null;
   constructor(private route: Router, private httpClient: HttpClient) {}
 
   ngOnInit(): void {
     this.checkSession();
+    this.getUsers();
   }
+
   checkSession() {
-    var checkStorage = sessionStorage.getItem('user');
+    var checkStorage = localStorage.getItem('user');
     console.log(checkStorage);
     if (!checkStorage) {
       this.route.navigate(['/']);
     }
   }
-  //
+  getUsers() {
+    this.httpClient
+      .get(BACKEND_URL + '/api/getUsers', httpOptions)
+      .subscribe((data: any) => {
+        if (data.ok) {
+          this.currentUsers = data.Users;
+          console.log(this.currentUsers);
+        }
+        if (!data.ok) {
+          alert('Error retrieving Users');
+        }
+      });
+  }
   createUser() {
     if (
       this.newUser.username != '' &&

@@ -1,32 +1,4 @@
 [
-  {
-    "Name": "Sports",
-    "Assistant": [],
-    "Channel": {
-      "Channel1": {
-        "Chat": []
-      },
-      "Channel2": {
-        "Chat": []
-      },
-      "Channel3": {
-        "Chat": []
-      }
-    }
-  },
-  {
-    "Name": "Gaming",
-    "Assistant": [],
-    "Channel": {
-      "Channel1": {
-        "Chat": []
-      },
-      "Channel2": {
-        "Chat": []
-      },
-      "Channel3": {
-        "Chat": []
-      }
-    }
-  }
+  { "name": "Sports", "users": ["test4", "test5"], "channels": [1, 2, 4] },
+  { "name": "Gaming", "users": ["test5"], "channels": [3] }
 ]

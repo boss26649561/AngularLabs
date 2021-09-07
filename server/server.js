@@ -20,7 +20,10 @@ var server = http.listen(3000, function () {
 
 app.post("/api/login", login);
 app.post("/api/createUser", require("./router/createUser"));
+app.post("/api/getGroups", require("./router/getGroups"));
 app.put("/api/deleteUser", require("./router/deleteUser"));
+app.put("/api/addToGroup", require("./router/addToGroup"));
 app.get("/api/getAllGroups", require("./router/getAllGroups"));
+app.get("/api/getUsers", require("./router/getUser"));
 //add group assistent to user
 //app.put("/api/add", require("./router/createUser"));

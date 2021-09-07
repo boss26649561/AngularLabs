@@ -2,13 +2,11 @@
 <form>
   <h1>Remove user</h1>
   <label>Username</label>
-  <input
-    type="text"
-    id="username"
-    name="username"
-    placeholder=""
-    [(ngModel)]="deleteUser.username"
-  />
+  <select [(ngModel)]="deleteUser.username">
+    <option *ngFor="let user of currentUsers" [value]="user">
+      {{ user }}
+    </option>
+  </select>
   <input type="submit" value="Remove User" (click)="removeUser()" />
 </form>
 

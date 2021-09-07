@@ -25,12 +25,12 @@ export class LoginComponent implements OnInit {
         if (data.ok) {
           // console.log(data);
           // console.log(data.user.username);
-          sessionStorage.setItem('user', data.user.username);
-          sessionStorage.setItem('role', data.user.role);
+          localStorage.setItem('user', data.user.username);
+          localStorage.setItem('role', data.user.role);
 
           //alert(data);
           if (data.user.role == 'User') {
-            sessionStorage.setItem('channel', data.user.channel);
+            //sessionStorage.setItem('channel', data.user.channel);
             alert('Success, Welcome Normal user ');
             this.route.navigate(['/account1']);
           }
