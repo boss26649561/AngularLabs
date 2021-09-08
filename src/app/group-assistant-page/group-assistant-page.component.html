@@ -1,1 +1,41 @@
-<p>group-assistant-page works!</p>
+<h1>Welcome {{ username.username }}</h1>
+
+<p>Add user to a group</p>
+<select [(ngModel)]="addgroup.user">
+  <option *ngFor="let user of currentUsers" [value]="user">
+    {{ user }}
+  </option>
+</select>
+<select [(ngModel)]="addgroup.group">
+  <option *ngFor="let group of groups" [value]="group.name">
+    {{ group.name }}
+  </option>
+</select>
+<input
+  type="submit"
+  value="Add User"
+  (click)="addUserToGroup(addgroup.group, addgroup.user)"
+/>
+<p>Remove user from a group</p>
+
+<select [(ngModel)]="deleteUser.user">
+  <option *ngFor="let user of currentUsers" [value]="user">
+    {{ user }}
+  </option>
+</select>
+<select [(ngModel)]="deleteUser.group">
+  <option *ngFor="let group of groups" [value]="group.name">
+    {{ group.name }}
+  </option>
+</select>
+<input type="submit" value="Remove User" (click)="deleteUserGroup()" />
+<h2 *ngFor="let group of groups">
+  {{ group.name }} <input type="submit" value="Add Channel" (click)="addChannel(group.name)" /><br />
+  <br />
+  <a
+    *ngFor="let id of group.channels"
+    class="nav-link"
+    [routerLink]="['/chat',id]"
+    >{{ id }}</a
+  >
+</h2>

@@ -1,8 +1,1 @@
-[
-  { "id": 1, "Group": "Sports", "Chat": ["hello", "hey", "test"] },
-  { "id": 2, "Group": "Sports", "Chat": [] },
-  { "id": 3, "Group": "Gaming", "Chat": [] },
-  { "id": 4, "Group": "Sports", "Chat": [] },
-  { "id": 5, "Group": "Gaming", "Chat": [] },
-  { "id": 6, "Group": "Coding", "Chat": [] }
-]
+[{"id":1,"Group":"Sports","Chat":["hello","hey","test"]},{"id":2,"Group":"Sports","Chat":[]},{"id":3,"Group":"Gaming","Chat":[]},{"id":4,"Group":"Sports","Chat":[]},{"id":5,"Group":"Gaming","Chat":[]},{"id":6,"Group":"Coding","Chat":[]},{"id":6,"Group":"Gaming","Chat":[]},{"id":7,"Group":"TestGroup","Chat":[]}]

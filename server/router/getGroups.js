@@ -8,6 +8,7 @@ module.exports = function (req, res) {
     if (err) throw err;
     let Groupnames = [];
     let GroupArray = JSON.parse(data);
+    let id = 0;
     //console.log(GroupArray);
     for (const index in GroupArray) {
       if (GroupArray[index].users.includes(username)) {
@@ -18,9 +19,17 @@ module.exports = function (req, res) {
         Groupnames.push(group);
       }
     }
+    //grab id
+    for (const index in GroupArray) {
+      for (const i in GroupArray[index].channels) {
+        if (GroupArray[index].channels[i] > id) {
+          id = GroupArray[index].channels[i];
+        }
+      }
+    }
     //console.log(Groupnames);
     if (Groupnames.length > 0) {
-      res.send({ ok: true, Groups: Groupnames });
+      res.send({ ok: true, Groups: Groupnames, id: id });
     } else res.send({ ok: false });
   });
 };

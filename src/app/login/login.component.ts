@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit {
             this.route.navigate(['/account1']);
           }
           if (data.user.role == 'Group Assistant') {
-            alert('Success, Welcome Group Assistent ');
+            alert('Success, Welcome Group Assistant ');
             this.route.navigate(['/account4']);
           }
           if (data.user.role == 'Group Admin') {
