@@ -1,12 +1,12 @@
-#Describe the layout of your git repository and the approach you took for version control.
+# Describe the layout of your git repository and the approach you took for version control.
 
 Layout of the Git repository is a standard Angular project setup for all the front end code and the backend code is in the server folder run via express. Approach for version control is by consistent commits every time a set of function is complete.
 
-#Describe the main data structures used in the program. For example, how the users and groups are represented.
+# Describe the main data structures used in the program. For example, how the users and groups are represented.
 I created 3 main data structures for this program, users,group and channel. The users structure stores an array of objects storing username,email,password and role. The Groups structure stores an array of objects storing name (name of the group), array of users (that have permission to the group) and an Channels array storing id of the channel. Lastly the Channels data structure stores an array of objects storing id, group(name of the group the channel belongs to) and an array of chat (stores arrays of strings).
 
-#The Angular front end should communicate with the Node.js server using a REST API. Describe each route provided, parameters, return values, and what it does.
-
+# The Angular front end should communicate with the Node.js server using a REST API. Describe each route provided, parameters, return values, and what it does.
+## Total routes
 app.post("/api/login", login);
 app.post("/api/createUser", require("./router/createUser"));
 app.post("/api/createGroup", require("./router/createGroup"));
@@ -20,6 +20,7 @@ app.put("/api/addToGroup", require("./router/addToGroup"));
 app.put("/api/addChannel", require("./router/addChannel"));
 app.get("/api/getAllGroups", require("./router/getAllGroups"));
 app.get("/api/getUsers", require("./router/getUser"));
+
 api/login post route takes an user object in the body parameters and checks the Users.json file to see if the usernames match. If it matches it returns data.ok back to the frontend else it returns data.ok==false
 api/createUser post route takes an user object in the body parameters and checks the Users.json file to see if an existing user exists. If User exists then it returns data.ok==false back to front end, if user doesn’t exist then it writes a new user object to the json and returns data.ok to the front end.
 api/createGroup post route takes a name in the body parameter and creates a new Group object with that name. It reads the group json and writes the group json back with the new group. Data.ok==true if successful
@@ -37,5 +38,5 @@ api/addToGroup put route takes group and user in the body parameter and then sea
 api/getAllgroups get route grabs the json file and returns the file, along with the highest current id and data.ok==true is returned if successful.
 api/getUsers get route grabs all username in the user.json file and pushes them to an array which is returned along with data.ok==true if successful.
 
-#Describe your Angular architecture in terms of components, services, and models.
+# Describe your Angular architecture in terms of components, services, and models.
 The angular architecture used was mostly components. A component was generated for each role of  the user. After logging in with the Log in component, the router directs the user to a page depending on the users role. There are a total of 4 component for each role and also a shared chat component for all users.
