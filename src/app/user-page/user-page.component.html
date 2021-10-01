@@ -1,0 +1,12 @@
+<h1>Welcome {{ username.username }}</h1>
+
+<h2 *ngFor="let group of groups">
+  {{ group.name }} <br />
+  <br />
+  <a
+    *ngFor="let id of group.channels"
+    class="nav-link"
+    [routerLink]="['/chat',id]"
+    >{{ id }}</a
+  >
+</h2>

@@ -1,0 +1,42 @@
+[
+  {
+    "username": "Super",
+    "email": "super@gmail.com",
+    "password": "123",
+    "role": "Super Admin"
+  },
+  {
+    "username": "test2",
+    "email": "test2@gmail.com",
+    "password": "123",
+    "role": "Group Admin"
+  },
+  {
+    "username": "test3",
+    "email": "test3@gmail.com",
+    "password": "123",
+    "role": "Group Assistant"
+  },
+  {
+    "username": "test4",
+    "email": "test4@gmail.com",
+    "password": "123",
+    "role": "User",
+    "group": [1, 2, 3],
+    "channels": [1, 4, 7]
+  },
+  {
+    "username": "test5",
+    "email": "test5@gmail.com",
+    "password": "123",
+    "role": "User",
+    "group": [1],
+    "channels": [2]
+  },
+  {
+    "username": "test7",
+    "email": "contact@hightro.com",
+    "password": "123",
+    "role": "User"
+  }
+]
