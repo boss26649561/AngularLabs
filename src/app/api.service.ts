@@ -16,4 +16,7 @@ export class ApiService {
   getUsers() {
     return this.http.get(this.url + 'users', httpOptions);
   }
+  getGroups() {
+    return this.http.get(this.url + 'groups', httpOptions);
+  }
 }

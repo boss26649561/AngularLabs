@@ -36,18 +36,17 @@ export class AdminPageComponent implements OnInit {
     this.getUsers();
   }
   getGroup() {
-    this.httpClient
-      .get(BACKEND_URL + '/api/getAllGroups', httpOptions)
-      .subscribe((data: any) => {
-        if (data.ok) {
-          this.groups = data.Groups;
-          this.currentid = data.id;
-          //console.log(this.groups);
-        }
-        if (!data.ok) {
-          alert('Error retrieving Groups');
-        }
-      });
+    this.apiService.getGroups().subscribe((data: any) => {
+      if (data.ok) {
+        this.groups = data.Groups;
+        this.currentid = data.id;
+        console.log(this.groups);
+        console.log(this.currentid);
+      }
+      if (!data.ok) {
+        alert('Error retrieving Groups');
+      }
+    });
   }
   checkSession() {
     var checkStorage = localStorage.getItem('user');
