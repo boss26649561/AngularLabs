@@ -18,7 +18,7 @@ MongoClient.connect(
     }
     const dbName = "Assignment2";
     const db = client.db(dbName);
-    require("./routes/getDatabase.js")(db, app);
+    require("./routes/users.js")(db, app);
     require("./routes/login.js")(db, app);
     // require("./routes/update.js")(db, app);
 

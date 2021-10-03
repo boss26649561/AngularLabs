@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ApiService } from '../api.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
@@ -23,7 +24,11 @@ export class AdminPageComponent implements OnInit {
 
   delGroup = { name: '' };
   currentid: number = 0;
-  constructor(private route: Router, private httpClient: HttpClient) {}
+  constructor(
+    private route: Router,
+    private httpClient: HttpClient,
+    private apiService: ApiService
+  ) {}
 
   ngOnInit(): void {
     this.checkSession();
@@ -52,17 +57,15 @@ export class AdminPageComponent implements OnInit {
     }
   }
   getUsers() {
-    this.httpClient
-      .get(BACKEND_URL + '/api/getUsers', httpOptions)
-      .subscribe((data: any) => {
-        if (data.ok) {
-          this.currentUsers = data.Users;
-          console.log(this.currentUsers);
-        }
-        if (!data.ok) {
-          alert('Error retrieving Users');
-        }
-      });
+    this.apiService.getUsers().subscribe((data: any) => {
+      if (data.ok) {
+        this.currentUsers = data.Users;
+        console.log(this.currentUsers);
+      }
+      if (!data.ok) {
+        alert('Error retrieving Users');
+      }
+    });
   }
   addChannel(name: string) {
     this.currentid += 1;
