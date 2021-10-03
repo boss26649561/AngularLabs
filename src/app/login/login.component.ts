@@ -17,14 +17,9 @@ export class LoginComponent implements OnInit {
   constructor(private route: Router, private httpClient: HttpClient) {}
 
   ngOnInit(): void {}
-  
-  // loginfunc() {
-  //   this.httpClient.post(BACKEND_URL + '/api/initialise', httpOptions);
-  //   this.httpClient.get(BACKEND_URL + '/api/database', httpOptions);
-  // }
 
   loginfunc() {
-    this.httpClient.get(BACKEND_URL + '/api/database', httpOptions);
+    //this.httpClient.get(BACKEND_URL + '/api/database', httpOptions);
     this.httpClient
       .post(BACKEND_URL + '/api/login', this.userpwd, httpOptions)
       .subscribe((data: any) => {
