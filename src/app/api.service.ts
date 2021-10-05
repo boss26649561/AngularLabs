@@ -22,6 +22,9 @@ export class ApiService {
   deleteUser(user: any) {
     return this.http.put(this.url + 'users', user, httpOptions);
   }
+  getGroup(user: any) {
+    return this.http.post(this.url + 'Group', user, httpOptions);
+  }
   getGroups() {
     return this.http.get(this.url + 'groups', httpOptions);
   }
@@ -31,6 +34,7 @@ export class ApiService {
   deleteGroup(name: any) {
     return this.http.put(this.url + 'groups', name, httpOptions);
   }
+
   addToGroup(user: any) {
     return this.http.post(this.url + 'userGroup', user, httpOptions);
   }

@@ -59,7 +59,7 @@ export class AdminPageComponent implements OnInit {
     this.apiService.getUsers().subscribe((data: any) => {
       if (data.ok) {
         this.currentUsers = data.Users;
-        console.log(this.currentUsers);
+        //console.log(this.currentUsers);
       }
       if (!data.ok) {
         alert('Error retrieving Users');
