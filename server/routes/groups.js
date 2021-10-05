@@ -33,7 +33,7 @@ module.exports = function (db, app) {
       res.send({ ok: true });
     });
   });
-  //Delete  group using req.body
+  //Delete  group using req.body, also delete all channels in that group
   app.put("/api/groups", function (req, res) {
     if (!req.body) {
       return res.sendStatus(400);
@@ -41,6 +41,11 @@ module.exports = function (db, app) {
     let name = req.body.name;
     const groups = db.collection("groups");
     groups.deleteOne({ name: name }, (err, docs) => {
+      if (err) throw err;
+    });
+
+    const channels = db.collection("channel");
+    channels.deleteMany({ Group: name }, (err, docs) => {
       if (err) throw err;
       res.send({ ok: true });
     });

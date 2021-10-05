@@ -37,4 +37,7 @@ export class ApiService {
   deleteFromGroup(user: any) {
     return this.http.put(this.url + 'userGroup', user, httpOptions);
   }
+  addChannel(nameID: any) {
+    return this.http.post(this.url + 'channels', nameID, httpOptions);
+  }
 }

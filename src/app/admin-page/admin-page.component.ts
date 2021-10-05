@@ -69,16 +69,13 @@ export class AdminPageComponent implements OnInit {
   addChannel(name: string) {
     this.currentid += 1;
     let gname = { name: name, id: this.currentid };
-    this.httpClient
-      .put(BACKEND_URL + '/api/addChannel', gname, httpOptions)
-      .subscribe((data: any) => {
-        if (data.ok) {
-          alert('Channel has been added');
-          this.currentid += 1;
-        } else {
-          alert('Error adding channel');
-        }
-      });
+    this.apiService.addChannel(gname).subscribe((data: any) => {
+      if (data.ok) {
+        alert('Channel has been added');
+      } else {
+        alert('Error adding channel');
+      }
+    });
   }
   addUserToGroup(group: string, user: string) {
     //console.log(this.addgroup);
