@@ -16,13 +16,25 @@ export class ApiService {
   getUsers() {
     return this.http.get(this.url + 'users', httpOptions);
   }
+  addUser(user: any) {
+    return this.http.post(this.url + 'users', user, httpOptions);
+  }
+  deleteUser(user: any) {
+    return this.http.put(this.url + 'users', user, httpOptions);
+  }
   getGroups() {
     return this.http.get(this.url + 'groups', httpOptions);
   }
-  addGroup(group:any) {
-    return this.http.post(this.url + 'groups',group, httpOptions);
+  addGroup(group: any) {
+    return this.http.post(this.url + 'groups', group, httpOptions);
   }
   deleteGroup(name: any) {
-    return this.http.put(this.url + 'groups',name, httpOptions);
+    return this.http.put(this.url + 'groups', name, httpOptions);
+  }
+  addToGroup(user: any) {
+    return this.http.post(this.url + 'userGroup', user, httpOptions);
+  }
+  deleteFromGroup(user: any) {
+    return this.http.put(this.url + 'userGroup', user, httpOptions);
   }
 }

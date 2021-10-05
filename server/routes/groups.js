@@ -28,7 +28,7 @@ module.exports = function (db, app) {
     let name = req.body.name;
     let newGroup = { name: name, users: [], channels: [] };
     const groups = db.collection("groups");
-    groups.insertOne(newGroup, (err, dbres) => {
+    groups.insertOne(newGroup, (err, docs) => {
       if (err) throw err;
       res.send({ ok: true });
     });

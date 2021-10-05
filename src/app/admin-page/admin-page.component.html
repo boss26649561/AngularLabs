@@ -2,7 +2,7 @@
 <form>
   <h1>Remove user</h1>
   <label>Username</label>
-  <select [(ngModel)]="deleteUser.username">
+  <select [(ngModel)]="deleteUser.username" name="first">
     <option *ngFor="let user of currentUsers" [value]="user">
       {{ user }}
     </option>

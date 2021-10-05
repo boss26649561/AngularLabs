@@ -81,17 +81,15 @@ export class AdminPageComponent implements OnInit {
       });
   }
   addUserToGroup(group: string, user: string) {
-    console.log(this.addgroup);
-    this.httpClient
-      .put(BACKEND_URL + '/api/addToGroup', this.addgroup, httpOptions)
-      .subscribe((data: any) => {
-        //alert(JSON.stringify(this.userpwd));
-        if (data.ok) {
-          alert(user + 'added to' + group);
-        } else {
-          alert('Error occured');
-        }
-      });
+    //console.log(this.addgroup);
+    this.apiService.addToGroup(this.addgroup).subscribe((data: any) => {
+      //alert(JSON.stringify(this.userpwd));
+      if (data.ok) {
+        alert(user + ' added to ' + group);
+      } else {
+        alert(user + ' is already in the group');
+      }
+    });
   }
   createUser() {
     if (
@@ -99,17 +97,14 @@ export class AdminPageComponent implements OnInit {
       this.newUser.email != '' &&
       this.newUser.password != ''
     ) {
-      this.httpClient
-        .post(BACKEND_URL + '/api/createUser', this.newUser, httpOptions)
-        .subscribe((data: any) => {
-          //alert(JSON.stringify(this.userpwd));
-          if (data.ok) {
-            alert('User successfully created');
-          }
-          if (!data.ok) {
-            alert('User already exists, please try another username');
-          }
-        });
+      this.apiService.addUser(this.newUser).subscribe((data: any) => {
+        if (data.ok) {
+          alert('User successfully created');
+        }
+        if (!data.ok) {
+          alert('User already exists, please try another username');
+        }
+      });
     } else {
       alert('Still missing details');
     }
@@ -137,12 +132,8 @@ export class AdminPageComponent implements OnInit {
   }
   deleteUserFromGroup() {
     //console.log(this.deleteUser);
-    this.httpClient
-      .put(
-        BACKEND_URL + '/api/deleteUserGroup',
-        this.deleteUserGroup,
-        httpOptions
-      )
+    this.apiService
+      .deleteFromGroup(this.deleteUserGroup)
       .subscribe((data: any) => {
         //alert(JSON.stringify(this.userpwd));
         if (data.ok) {
@@ -158,16 +149,15 @@ export class AdminPageComponent implements OnInit {
   }
   //
   removeUser() {
-    this.httpClient
-      .put(BACKEND_URL + '/api/deleteUser', this.deleteUser)
-      .subscribe((data: any) => {
-        //alert(JSON.stringify(this.userpwd));
-        if (data.ok) {
-          alert(this.deleteUser.username + 'successfully deleted');
-        }
-        if (!data.ok) {
-          alert('Username not found');
-        }
-      });
+    //console.log(this.deleteUser);
+    this.apiService.deleteUser(this.deleteUser).subscribe((data: any) => {
+      //alert(JSON.stringify(this.userpwd));
+      if (data.ok) {
+        alert(this.deleteUser.username + 'successfully deleted');
+      }
+      if (!data.ok) {
+        alert('Username not found');
+      }
+    });
   }
 }

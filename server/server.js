@@ -21,7 +21,8 @@ MongoClient.connect(
     require("./routes/users.js")(db, app);
     require("./routes/groups.js")(db, app);
     require("./routes/login.js")(db, app);
-    // require("./routes/update.js")(db, app);
+    require("./routes/UserGroup.js")(db, app);
+    require("./routes/channels.js")(db, app);
 
     app.listen(3000, () => {
       console.log("server is listening on port 3000");
