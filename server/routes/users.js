@@ -1,4 +1,5 @@
 module.exports = function (db, app) {
+  //Retrieves Users in database
   app.get("/api/users", function (req, res) {
     const user = db.collection("users");
     userArray = [];

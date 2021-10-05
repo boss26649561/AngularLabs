@@ -115,29 +115,25 @@ export class AdminPageComponent implements OnInit {
     }
   }
   createGroup() {
-    this.httpClient
-      .post(BACKEND_URL + '/api/createGroup', this.newGroup, httpOptions)
-      .subscribe((data: any) => {
-        if (data.ok) {
-          alert('new group ' + this.newGroup.name + ' has been added');
-        }
-        if (!data.ok) {
-          alert('Error retrieving Groups');
-        }
-      });
+    this.apiService.addGroup(this.newGroup).subscribe((data: any) => {
+      if (data.ok) {
+        alert('new group ' + this.newGroup.name + ' has been added');
+      }
+      if (!data.ok) {
+        alert('Error retrieving Groups');
+      }
+    });
   }
   deleteGroup(name: string) {
     this.delGroup.name = name;
-    this.httpClient
-      .put(BACKEND_URL + '/api/deleteGroup', this.delGroup, httpOptions)
-      .subscribe((data: any) => {
-        if (data.ok) {
-          alert('Group has been deleted');
-          this.currentid += 1;
-        } else {
-          alert('Error removing group');
-        }
-      });
+    this.apiService.deleteGroup(this.delGroup).subscribe((data: any) => {
+      if (data.ok) {
+        alert('Group has been deleted');
+        this.currentid += 1;
+      } else {
+        alert('Error removing group');
+      }
+    });
   }
   deleteUserFromGroup() {
     //console.log(this.deleteUser);

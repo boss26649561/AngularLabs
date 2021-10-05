@@ -19,4 +19,10 @@ export class ApiService {
   getGroups() {
     return this.http.get(this.url + 'groups', httpOptions);
   }
+  addGroup(group:any) {
+    return this.http.post(this.url + 'groups',group, httpOptions);
+  }
+  deleteGroup(name: any) {
+    return this.http.put(this.url + 'groups',name, httpOptions);
+  }
 }
