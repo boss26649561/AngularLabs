@@ -44,4 +44,11 @@ export class ApiService {
   addChannel(nameID: any) {
     return this.http.post(this.url + 'channels', nameID, httpOptions);
   }
+  getChat(ID: any) {
+    return this.http.post(this.url + 'chat', ID, httpOptions);
+  }
+  updateChat(ID: any) {
+    return this.http.put(this.url + 'chat', ID, httpOptions);
+  }
+
 }

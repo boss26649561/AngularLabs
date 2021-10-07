@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { ApiService } from '../api.service';
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
 };
@@ -16,7 +17,8 @@ export class ChatPageComponent implements OnInit {
   constructor(
     private route: Router,
     private _Activatedroute: ActivatedRoute,
-    private httpClient: HttpClient
+    private httpClient: HttpClient,
+    private apiService: ApiService
   ) {}
 
   ngOnInit(): void {
@@ -33,37 +35,34 @@ export class ChatPageComponent implements OnInit {
   }
   getChat(id: any) {
     //grab groups
-    this.httpClient
-      .post(BACKEND_URL + '/api/getChat', id, httpOptions)
-      .subscribe((data: any) => {
-        if (data.ok) {
-          this.messages = data.chat;
-          console.log(this.messages);
-        }
-        if (!data.ok) {
-          alert('Error retrieving Messages');
-        }
-      });
+    console.log(id);
+    this.apiService.getChat(id).subscribe((data: any) => {
+      if (data.ok) {
+        this.messages = data.chat;
+        console.log(this.messages);
+      }
+      if (!data.ok) {
+        alert('Error retrieving Messages');
+      }
+    });
   }
   chat() {
     if (this.messagecontent) {
       this.messages.push(this.messagecontent);
-      this.messagecontent = '';
       //need to post data back
       let param = {
         id: this._Activatedroute.snapshot.paramMap.get('id'),
-        chat: this.messages,
+        chat: this.messagecontent,
       };
-      this.httpClient
-        .post(BACKEND_URL + '/api/updateChat', param, httpOptions)
-        .subscribe((data: any) => {
-          if (data.ok) {
-            console.log('posted message');
-          }
-          if (!data.ok) {
-            alert('Error updating Messages');
-          }
-        });
+      this.apiService.updateChat(param).subscribe((data: any) => {
+        if (data.ok) {
+          this.messagecontent = '';
+          console.log('posted message');
+        }
+        if (!data.ok) {
+          alert('Error updating Messages');
+        }
+      });
     } else {
       console.log('no message');
     }
