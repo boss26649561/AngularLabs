@@ -13,6 +13,10 @@
       <button (click)="chat()" class="btn btn-primary">Chat</button>
     </div>
   </form>
+  <h3>Users that Joined</h3>
+  <ul>
+    <ol *ngFor="let user of users">{{ user }}</ol>
+  </ul>
   <h3>Chat Messages</h3>
   <ul>
     <li *ngFor="let message of messages">{{ message }}</li>

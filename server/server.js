@@ -5,6 +5,13 @@ const http = require("http").Server(app);
 const cors = require("cors");
 const MongoClient = require("mongodb").MongoClient;
 var ObjectID = require("mongodb").ObjectID;
+const io = require("socket.io")(http, {
+  cors: {
+    origin: "*",
+  },
+});
+const sockets = require("./socket.js");
+const server = require("./listen.js");
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -26,9 +33,8 @@ MongoClient.connect(
     require("./routes/group.js")(db, app);
     require("./routes/chat.js")(db, app);
 
-    app.listen(3000, () => {
-      console.log("server is listening on port 3000");
-    });
+    sockets.connect(io, 3000);
+    server.listen(http, 3000);
   }
 );
 

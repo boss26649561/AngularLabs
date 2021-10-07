@@ -1,4 +1,5 @@
 module.exports = function (db, app) {
+  //login details check
   app.post("/api/login", function (req, res) {
     var u = req.body.username;
     var p = req.body.pwd;
@@ -6,7 +7,7 @@ module.exports = function (db, app) {
     // console.log(c);
     const user = db.collection("users");
     user.find({}).toArray((err, data) => {
-      console.log(data);
+      //console.log(data);
       let i = data.findIndex(
         (user) => user.username == u && user.password == p
       );

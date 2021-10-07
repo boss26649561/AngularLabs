@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ApiService } from '../api.service';
+import { SocketService } from '../socket.service';
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
 };
@@ -14,17 +15,24 @@ const BACKEND_URL = 'http://localhost:3000';
 export class ChatPageComponent implements OnInit {
   messagecontent: string = '';
   messages: string[] = [];
+  ioConnection: any;
+  users: string[] = [];
+  user = localStorage.getItem('user');
   constructor(
     private route: Router,
     private _Activatedroute: ActivatedRoute,
     private httpClient: HttpClient,
-    private apiService: ApiService
+    private apiService: ApiService,
+    private socketService: SocketService
   ) {}
 
   ngOnInit(): void {
     this.checkSession();
     let id = { id: this._Activatedroute.snapshot.paramMap.get('id') };
+
     this.getChat(id);
+    this.initIoConnection();
+    this.socketService.userSend(this.user);
   }
   checkSession() {
     var checkStorage = localStorage.getItem('user');
@@ -32,6 +40,19 @@ export class ChatPageComponent implements OnInit {
     if (!checkStorage) {
       this.route.navigate(['/']);
     }
+  }
+  private initIoConnection() {
+    this.socketService.initSocket();
+    this.ioConnection = this.socketService
+      .onMessage()
+      .subscribe((message: string) => {
+        this.messages.push(message);
+      });
+    this.ioConnection = this.socketService
+      .onUser()
+      .subscribe((user: string) => {
+        this.users.push(user);
+      });
   }
   getChat(id: any) {
     //grab groups
@@ -48,8 +69,8 @@ export class ChatPageComponent implements OnInit {
   }
   chat() {
     if (this.messagecontent) {
+      this.socketService.send(this.messagecontent);
       this.messages.push(this.messagecontent);
-      //need to post data back
       let param = {
         id: this._Activatedroute.snapshot.paramMap.get('id'),
         chat: this.messagecontent,
