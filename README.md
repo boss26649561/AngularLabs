@@ -1,4 +1,6 @@
 # Assignment2
+# For testing
+Externally facing tests -> npm test in server folder
 # Describe the layout of your git repository and the approach you took for version control.
 
 Layout of the Git repository is a standard Angular project setup for all the front end code and the backend code is in the server folder run via express. Approach for version control is by consistent commits every time a set of function is complete.
@@ -44,7 +46,7 @@ api/userGroup post put route takes group and username in the body parameter and 
 
 api/userGroup post route takes group and user in the body parameter and then searches through group.json for matching name. Once found, the user is added to the user array and rewritten back to the json file. data.ok==true is returned if successful.
 
-
+npm test
 
 
 
