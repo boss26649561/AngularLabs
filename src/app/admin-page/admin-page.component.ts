@@ -1,10 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApiService } from '../api.service';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
-};
+
 const BACKEND_URL = 'http://localhost:3000';
 
 @Component({
@@ -26,7 +23,7 @@ export class AdminPageComponent implements OnInit {
   currentid: number = 0;
   constructor(
     private route: Router,
-    private httpClient: HttpClient,
+
     private apiService: ApiService
   ) {}
 

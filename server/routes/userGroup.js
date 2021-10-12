@@ -34,7 +34,7 @@ module.exports = function (db, app) {
     } else res.send({ ok: false });
   });
 
-  //add user to a group
+  //add user to a group in Mongo
   app.post("/api/userGroup", function (req, res) {
     let groupname = req.body.group;
     let user = req.body.user;
@@ -57,7 +57,7 @@ module.exports = function (db, app) {
     });
   });
 
-  //removes a user from a group
+  //removes a user from a group in Mongo
   app.put("/api/userGroup", function (req, res) {
     let groupname = req.body.group;
     let user = [req.body.user];

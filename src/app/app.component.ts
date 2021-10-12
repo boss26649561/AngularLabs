@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
 export class AppComponent {
   constructor(private route: Router) {}
 
-  title = 'Assignment1';
+  title = 'Assignment2';
   deleteSession() {
     localStorage.clear();
     alert('Logged out');

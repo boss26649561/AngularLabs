@@ -1,11 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+
 import { ApiService } from '../api.service';
 import { SocketService } from '../socket.service';
-const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
-};
+
 const BACKEND_URL = 'http://localhost:3000';
 @Component({
   selector: 'app-chat-page',
@@ -21,7 +19,7 @@ export class ChatPageComponent implements OnInit {
   constructor(
     private route: Router,
     private _Activatedroute: ActivatedRoute,
-    private httpClient: HttpClient,
+
     private apiService: ApiService,
     private socketService: SocketService
   ) {}
@@ -85,7 +83,8 @@ export class ChatPageComponent implements OnInit {
         }
       });
     } else {
-      console.log('no message');
+      alert('No message');
+      //console.log('no message');
     }
   }
 }

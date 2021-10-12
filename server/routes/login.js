@@ -1,5 +1,5 @@
 module.exports = function (db, app) {
-  //login details check
+  //login details check, sends back data about the user
   app.post("/api/login", function (req, res) {
     var u = req.body.username;
     var p = req.body.pwd;

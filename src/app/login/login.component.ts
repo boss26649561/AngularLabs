@@ -10,6 +10,7 @@ import { ApiService } from '../api.service';
 export class LoginComponent implements OnInit {
   userpwd = { username: '', pwd: '' };
   userobj = { user: '', birthdate: null, age: ' ' };
+  
   constructor(private route: Router, private apiService: ApiService) {}
 
   ngOnInit(): void {}
